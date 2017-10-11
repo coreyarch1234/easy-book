@@ -5,9 +5,8 @@ import Communications from 'react-native-communications';
 
 
 export default class App extends React.Component {
-    sendEmail = () => {
-        // Communications.email('harrilal@mit.edu', null, null, 'hello wlrld', 'hope this works');
-        Communications.text('6462670978', 'hello world');
+    sendEmail = (email) => {
+        Communications.email([email], null, null, 'Have a free book!', 'Here is a PDF!');
     }
     render() {
         return (
@@ -16,9 +15,9 @@ export default class App extends React.Component {
                 <Text style= {styles.step}>Send your friend a textbook PDF.</Text>
                 <View>
                     <SearchBook onSubmit={(isbn, email) => {
-                    console.log("The ISBN has been submitted: ", isbn);
-                    console.log("Friend's: ", email);
-                    {this.sendEmail()}
+                        console.log("The ISBN has been submitted: ", isbn);
+                        console.log("Friend's: ", email);
+                        {this.sendEmail(email)}
                     }}/>
 
                 </View>
