@@ -24,6 +24,7 @@
     "react-native": "^0.48.4",
     "react-native-communications": "^2.2.1",
     "react-native-email": "^1.0.0",
+    "react-navigation": "^1.0.0-beta.13",
     "request": "^2.83.0"
   }
 }
