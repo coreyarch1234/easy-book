@@ -3,27 +3,27 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native
 
 //Search bar for ISBN.
 
-export default class Email extends React.Component {
+export default class ISBN extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            email: ''
+            text: '',
         }
     }
 
         render() {
             return (
-                <View style={{padding: 10}}>
+                <View style={{padding: 30}}>
                 <TextInput
-                  style={{height: 40, paddingLeft: '7%'}}
-                  placeholder="Email address"
-                  onChangeText={(email) => this.setState({email})}
-                  value={this.state.email}
+                  style={{height: 50, paddingBottom: 30, paddingLeft: '6%'}}
+                  placeholder="Type in the ISBN"
+                  onChangeText={(text) => this.setState({text})}
+                  value={this.state.text}
                 />
                 <TouchableOpacity
                     style = {styles.submitButton}
                     onPress = {
-                       () => this.props.onSubmit(this.state.email)
+                       () => this.props.onSubmit(this.state.text)
                     }>
                     <Text style = {styles.submitButtonText}> Submit </Text>
                 </TouchableOpacity>
@@ -39,10 +39,12 @@ const styles = {
         paddingLeft: 40,
         paddingTop: 10,
         borderRadius: 10,
-        height: 40
+        height: 40,
+        left: 20
      },
 
     submitButtonText:{
-        color: 'white'
+        color: 'white',
+
     }
 }
