@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
 
 //Search bar for ISBN.
 
@@ -15,18 +15,17 @@ export default class Email extends React.Component {
             return (
                 <View style={{padding: 10}}>
                 <TextInput
-                  style={{height: 40, paddingLeft: '7%'}}
-                  placeholder="Email address"
+                  style={{height: 50, paddingBottom: 30, fontSize: '30'}}
+                  placeholder="Email Address"
                   onChangeText={(email) => this.setState({email})}
                   value={this.state.email}
                 />
-                <TouchableOpacity
-                    style = {styles.submitButton}
-                    onPress = {
-                       () => this.props.onSubmit(this.state.email)
-                    }>
-                    <Text style = {styles.submitButtonText}> Submit </Text>
-                </TouchableOpacity>
+
+                <Button
+                    onPress={() => this.props.onSubmit(this.state.email)}
+                    color='#ff5c5c'
+                    title="Continue"
+               />
                 </View>
             )
         }
@@ -39,7 +38,8 @@ const styles = {
         paddingLeft: 40,
         paddingTop: 10,
         borderRadius: 10,
-        height: 40
+        height: 40,
+        top: 15
      },
 
     submitButtonText:{

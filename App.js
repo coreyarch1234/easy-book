@@ -4,39 +4,18 @@ import SearchBook from './searchBook';
 import ISBN from './isbn';
 import EmailInfo from './enterEmail';
 import Communications from 'react-native-communications';
+import Swiper from 'react-native-swiper';
 
 //navigator
 import { StackNavigator } from 'react-navigation';
 
-
-// export default class App extends React.Component {
-//     sendEmail = (email) => {
-//         Communications.email([email], null, null, 'Have a free book!', 'Here is a PDF!');
-//     }
-//     render() {
-//         return (
-//             <View style={styles.container}>
-//                 <Text style= {styles.titleApp}>Easy Books</Text>
-//                 <Text style= {styles.step}>Send your friend a textbook PDF.</Text>
-//                 <View>
-//                     <SearchBook onSubmit={(isbn, email) => {
-//                         console.log("The ISBN has been submitted: ", isbn);
-//                         console.log("Friend's: ", email);
-//                         {this.sendEmail(email)}
-//                     }}/>
-//
-//                 </View>
-//             </View>
-//         );
-//     }
-// }
 class Email extends React.Component {
     static navigationOptions = {
         title: 'Email'
     }
     constructor(props){
         super(props);
-        this.params = this.props.navigation.state;
+        this.params = this.props.navigation.state; //holds params sent in by the isbn component
         this.isbn = this.params.isbn;
     }
     sendEmail = (email) => {
@@ -45,8 +24,7 @@ class Email extends React.Component {
     render() {
         const { params } = this.props.navigation.state;
         return (
-            <View style={styles.container}>
-                <Text style= {styles.emailText}>Enter email</Text>
+            <View style={styles.containerEmail}>
                 <View>
                     <EmailInfo onSubmit={(email) => {
                         console.log("The email has been submitted: ", email);
@@ -61,24 +39,17 @@ class Email extends React.Component {
 
 class BookNumber extends React.Component {
     static navigationOptions = {
-        title: 'ISBN'
+        title: 'ISBN' //on top tab bar
     };
-    //
-    // sendEmail = (email) => {
-    //     Communications.email([email], null, null, 'Have a free book!', 'Here is a PDF!');
-    // }
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Text style= {styles.titleApp}>Enter your ISBN number</Text>
+            <View style={styles.containerISBN}>
                 <View>
                     <ISBN onSubmit={(isbn) => {
                         console.log("The ISBN has been submitted: ", isbn);
-                        navigate('Email', {isbn: isbn})
-                        // {this.sendEmail(email)}
+                        navigate('Email', {isbn: isbn}) //go to email, but pass in isbn number
                     }}/>
-
                 </View>
             </View>
         );
@@ -88,19 +59,24 @@ class BookNumber extends React.Component {
 class HomeScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Easy Book'
+        title: 'Easy Book' //goes on the tab bar. title is a navigation property
     };
 
     render() {
-        const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation; //gets passed down from stack navigator
         return(
-            <View style={styles.container}>
-                <Text>Start getting free books</Text>
+
+            <View style={styles.containerHome}>
+                <Text style={styles.homeScreenHead}>Easy Books</Text>
+                <Text style={styles.homeScreenText}>Take the work out of finding textbook PDFs and share with classmates</Text>
                 <Button
-                    onPress={() => navigate('BookNumber')}
-                    title="Get Started"
+                    onPress={() => navigate('BookNumber')} //when you tap, get sent to booknumber
+                    color='#ff5c5c'
+                    title="Continue"
                />
             </View>
+
+
         )
     }
 }
@@ -113,30 +89,42 @@ const SimpleApp = StackNavigator({
 
 
 export default class App extends React.Component {
-
     render() {
         return <SimpleApp />;
     }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerHome: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#29334D',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  titleApp: {
-      fontSize: 25,
-      paddingBottom: 20
+  containerISBN: {
+    flex: 1,
+    backgroundColor: '#2F6CAD',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  emailText: {
-      fontSize: 25,
-      paddingBottom: 20
+  containerEmail: {
+    flex: 1,
+    backgroundColor: '#533D7F',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  step: {
-      fontSize: 15,
-      paddingBottom: 5
+  homeScreenHead: {
+      fontSize: '40',
+      fontWeight: '700',
+      color: 'white',
+      marginBottom: 15
+  },
+  homeScreenText: {
+      fontSize: '18',
+      color: 'white',
+      textAlign: 'center',
+      width: '80%',
+      marginBottom: 15
   }
 });
 

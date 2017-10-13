@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
 
 //Search bar for ISBN.
 
@@ -14,19 +14,17 @@ export default class ISBN extends React.Component {
         render() {
             return (
                 <View style={{padding: 30}}>
-                <TextInput
-                  style={{height: 50, paddingBottom: 30, paddingLeft: '6%'}}
-                  placeholder="Type in the ISBN"
-                  onChangeText={(text) => this.setState({text})}
-                  value={this.state.text}
-                />
-                <TouchableOpacity
-                    style = {styles.submitButton}
-                    onPress = {
-                       () => this.props.onSubmit(this.state.text)
-                    }>
-                    <Text style = {styles.submitButtonText}> Submit </Text>
-                </TouchableOpacity>
+                    <TextInput
+                      style={{height: 50, paddingBottom: 30, fontSize: '30'}}
+                      placeholder="Type in the ISBN"
+                      onChangeText={(text) => this.setState({text})}
+                      value={this.state.text}
+                    />
+                    <Button
+                        onPress={() => this.props.onSubmit(this.state.text)}
+                        color='#ff5c5c'
+                        title="Continue"
+                   />
                 </View>
             )
         }
@@ -34,17 +32,16 @@ export default class ISBN extends React.Component {
 
 const styles = {
     submitButton: {
-        backgroundColor: '#7a42f4',
+        backgroundColor: '#ff5c5c',
         width: 135,
         paddingLeft: 40,
         paddingTop: 10,
         borderRadius: 10,
         height: 40,
-        left: 20
      },
 
     submitButtonText:{
         color: 'white',
-
+        fontFamily: 'Arimo-Bold',
     }
 }
