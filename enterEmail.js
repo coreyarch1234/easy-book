@@ -13,23 +13,27 @@ export default class Email extends React.Component {
 
         render() {
             return (
-                <View style={{padding: 10}}>
-                <TextInput
-                  style={{height: 50, paddingBottom: 30, fontSize: '30'}}
-                  placeholder="Email Address"
-                  onChangeText={(email) => this.setState({email})}
-                  value={this.state.email}
-                />
+                <View style={styles.emailContainer}>
+                    <TextInput
+                      style={styles.emailInput}
+                      placeholder="Email Address"
+                      onChangeText={(email) => this.setState({email})}
+                      value={this.state.email}
+                      multiline = {true}
+                    />
 
-                <Button
-                    onPress={() => this.props.onSubmit(this.state.email)}
-                    color='#ff5c5c'
-                    title="Continue"
-               />
+                    <Button
+                        onPress={() => this.props.onSubmit(this.state.email)}
+                        color='#ff5c5c'
+                        title="Send To Friends"
+                   />
                 </View>
             )
         }
 }
+
+
+// get dimensions
 
 const styles = {
     submitButton: {
@@ -44,5 +48,17 @@ const styles = {
 
     submitButtonText:{
         color: 'white'
+    },
+
+    emailInput: {
+        height: 80,
+        padding: 10,
+        fontSize: '18',
+        borderWidth: 1,
+        borderColor:'#000'
+    },
+    emailContainer: {
+        padding: 10,
+        width: 300
     }
 }

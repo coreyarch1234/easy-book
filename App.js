@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, KeyboardAvoidingView} from 'react-native';
 import SearchBook from './searchBook';
 import ISBN from './isbn';
 import EmailInfo from './enterEmail';
@@ -24,15 +24,17 @@ class Email extends React.Component {
     render() {
         const { params } = this.props.navigation.state;
         return (
-            <View style={styles.containerEmail}>
-                <View>
-                    <EmailInfo onSubmit={(email) => {
-                        console.log("The email has been submitted: ", email);
-                        {this.sendEmail(email)}
-                    }}/>
+            <KeyboardAvoidingView style={{flex:1, backgroundColor:'#f00'}}>
+                <View style={styles.containerEmail}>
+                    <View>
+                        <EmailInfo onSubmit={(email) => {
+                            console.log("The email has been submitted: ", email);
+                            {this.sendEmail(email)}
+                        }}/>
 
+                    </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
